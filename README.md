@@ -13,12 +13,16 @@ The project roadmap is set in stages where we begin as a simple to-do list and g
 
 ## List of React Router Routes
 
-| Route Name | Endpoint | Method | Description |
+| Route Name | Endpoint | Method | Description | 
 |------------|----------|--------|-------------|
 | Landing | /projects | GET | Renders all projects on a page|
 | ProjectShow | /projects/:id | GET | Renders a project and its subtasks|
+| ProjectCreate | /projects/create | POST | Creates a project |
+| ProjectDelete | /projects/delete/:id | DELETE | Deletes a project |
 | TaskShow | /tasks/:id | GET | Renders a project subtask|
 | TaskEdit | /tasks/:id | PUT | Updates a project subtask|
+| TaskCreate | /tasks/create | POST | Creates a project subtask|
+| TaskDelete | /tasks/delete/:id | DELETE | Deletes a project subtask|
 
 
 
