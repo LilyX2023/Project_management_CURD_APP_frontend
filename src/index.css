@@ -44,10 +44,11 @@ code {
 }
 
 .project-show-task {
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .subtasks {
+  display: flex;
   align-items: center;
   flex-direction: column;
   background-color: #fafaf9;
@@ -57,21 +58,33 @@ code {
 }
 
 .status-heading {
-  text-align: left;
+  margin: 0px;
 }
 
 .task-card {
-  background-color: white;
-  border: 1px solid rgb(40, 39, 39);
-  height: 100px;
-  width: 80%;
-  margin-bottom: 5%;
+  min-height: 4rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0px;
 }
 
 .task-details {
   text-decoration: none;
+  border: 1px solid rgb(40, 39, 39);
   color: black;
   font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.task-details > h2 {
+  text-align: right;
+  margin: 0px;
+  width: 100%;
 }
 
 .priority {
