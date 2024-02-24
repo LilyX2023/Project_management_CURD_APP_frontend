@@ -59,7 +59,7 @@ const URL = process.env.REACT_APP_URL;
     }
 };
 
-// Function to delete a bookmark
+// Function to delete a project
 const handleDelete = async (id) => {
     try {
         await fetch(`${URL}/project/${id}`, {
@@ -71,7 +71,7 @@ const handleDelete = async (id) => {
     }
 };
 
-// Function to set up editing of a bookmark
+// Function to set up editing of a project
 const handleEdit = (id) => {
     const projectToEdit = projects.find(project => project._id === id);
     setEditingProjectId(id);

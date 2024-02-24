@@ -6,7 +6,7 @@ import {
 import App from './App';
 import Landing from './pages/index';
 import { projectsLoader} from './loaders'; 
-import { updateAction, createAction, deleteAction } from './projectsActions';
+import { updateAction, createAction, deleteAction } from './actions';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
