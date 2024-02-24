@@ -77,9 +77,11 @@ code {
 }
 
 .priority {
-  width: 50px;  /* Width of the circle */
+  width: 60px;  /* Width of the circle */
   height: 30px; /* Height of the circle */ 
   border-radius: 50px 50px 50px 50px; /* Top left, top right, bottom right, bottom left */
   background-color: rgb(141, 220, 141);
-  padding: 5% 0;
+  padding: 5px 0;
+  font-weight: 600;
+  font-size: 0.7rem;
 }
