@@ -11,3 +11,75 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+* {
+  /* outline: 1px solid green; */
+}
+
+.flex {
+  display: flex;
+}
+
+.border-corner {
+  border-radius: 5px;
+}
+
+/* Project Subtasks page */
+.project-name-show{
+  margin: 0; /* to remove any default browser margin */
+  margin-bottom: 3%;
+  text-align: left;
+  padding: 2% 0; /* padding top and bottom */
+  padding-left: 5%; /* padding to left since in previous line left padding was 0 */
+  background-color: #DBDAD6;
+  align-items: center; /*aligning the h1 text to center */
+}
+
+.project-show-task {
+  justify-content: space-around;
+}
+
+.subtasks {
+  align-items: center;
+  flex-direction: column;
+  background-color: #FAFAF9; 
+  padding: 20px 0;
+  border: 0.8px solid black;
+  width: 30%;
+}
+
+.status-heading {
+  text-align: left;
+}
+
+.task-card {
+  background-color: white;
+  border: 1px solid rgb(40, 39, 39);
+  height: 100px;
+  width: 80%;
+  margin-bottom: 5%;
+}
+
+.task-details {
+  text-decoration: none;
+  color: black;
+  font-size: 0.6rem;
+}
+
+.priority {
+  width: 50px;  /* Width of the circle */
+  height: 30px; /* Height of the circle */ 
+  border-radius: 50px 50px 50px 50px; /* Top left, top right, bottom right, bottom left */
+  background-color: rgb(141, 220, 141);
+  padding: 5% 0;
+}

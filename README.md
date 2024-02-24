@@ -15,7 +15,7 @@ The project roadmap is set in stages where we begin as a simple to-do list and g
 
 | Route Name | Endpoint | Method | Description | 
 |------------|----------|--------|-------------|
-| Landing | /projects | GET | Renders all projects on a page|
+| Landing | / | GET | Renders all projects on a page|
 | ProjectShow | /projects/:id | GET | Renders a project and its subtasks|
 | ProjectCreate | /projects/create | POST | Creates a project |
 | ProjectDelete | /projects/delete/:id | DELETE | Deletes a project |
