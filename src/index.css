@@ -1,15 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 *,
@@ -35,53 +33,75 @@ code {
 }
 
 /* Project Subtasks page */
-.project-name-show{
+.project-name-show {
   margin: 0; /* to remove any default browser margin */
   margin-bottom: 3%;
   text-align: left;
   padding: 2% 0; /* padding top and bottom */
   padding-left: 5%; /* padding to left since in previous line left padding was 0 */
-  background-color: #DBDAD6;
+  background-color: #dbdad6;
   align-items: center; /*aligning the h1 text to center */
 }
 
 .project-show-task {
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .subtasks {
+  display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #FAFAF9; 
+  background-color: #fafaf9;
   padding: 20px 0;
   border: 0.8px solid black;
   width: 30%;
 }
 
 .status-heading {
-  text-align: left;
+  margin: 0px;
 }
 
 .task-card {
-  background-color: white;
-  border: 1px solid rgb(40, 39, 39);
-  height: 100px;
-  width: 80%;
-  margin-bottom: 5%;
+  min-height: 4rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0px;
 }
 
 .task-details {
   text-decoration: none;
+  border: 1px solid rgb(40, 39, 39);
   color: black;
   font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.task-details > h2 {
+  text-align: right;
+  margin: 0px;
+  width: 100%;
 }
 
 .priority {
-  width: 60px;  /* Width of the circle */
-  height: 30px; /* Height of the circle */ 
+  width: 60px; /* Width of the circle */
+  height: 30px; /* Height of the circle */
   border-radius: 50px 50px 50px 50px; /* Top left, top right, bottom right, bottom left */
-  background-color: rgb(141, 220, 141);
   padding: 5px 0;
   font-weight: 600;
   font-size: 0.7rem;
+}
+
+.green {
+  background-color: hsl(124, 100%, 80%);
+}
+.yellow {
+  background-color: hsl(53, 100%, 80%);
+}
+.red {
+  background-color: hsl(0, 100%, 80%);
 }
