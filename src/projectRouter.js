@@ -5,9 +5,8 @@ import {
 } from 'react-router-dom';
 import App from './App';
 import Landing from './pages/index';
-
 import { projectsLoader} from './loaders'; 
-import { updateAction, createAction, deleteAction } from './actions';
+import { updateAction, createAction, deleteAction } from './projectsActions';
 
 const router = createBrowserRouter(
     createRoutesFromElements(

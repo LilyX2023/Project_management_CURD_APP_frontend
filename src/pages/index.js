@@ -1,10 +1,9 @@
-import { Link, useLoaderData, Form } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 const URL = process.env.REACT_APP_URL;
 
 
  const Landing = () => {
-//     // State variables for storing projects, new project title and etc,
+// State variables for storing projects, new project title and etc,
     const [projects, setProjects] = useState([]);
     const [newProjectTitle, setNewProjectTitle] = useState('');
     const [newProjectStatus, setNewProjectStatus] = useState('');
@@ -30,9 +29,100 @@ const URL = process.env.REACT_APP_URL;
         getProjects();
     }, []);
 
-    const handleAddProject = async() => {
-        
+ // Function to add a new project
+ const handleAddproject= async (e) => {
+    e.preventDefault();
+    try {
+        const response = await fetch(`${URL}/project`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                project: newProjectTitle,
+                status: newProjectStatus, 
+                createdOn: newProjectCreatedOn,
+                deadline: newProjectDeadline,
+                finishedOn: newFinishedOn,
+            }),
+        });
+        const data = await response.json();
+        setProjects([...projects, data]);
+        setNewProjectTitle('');
+        setNewProjectStatus('');
+        setNewProjectCreatedOn('');
+        setNewProjectDeadline('');
+        setNewFinishedOn('');
+
+    } catch (error) {
+        console.error('Error adding project:', error);
     }
+};
+
+// Function to delete a bookmark
+const handleDelete = async (id) => {
+    try {
+        await fetch(`${URL}/project/${id}`, {
+            method: 'DELETE',
+        });
+        setProjects(projects.filter(project => project._id !== id));
+    } catch (error) {
+        console.error('Error deleting project:', error);
+    }
+};
+
+// Function to set up editing of a bookmark
+const handleEdit = (id) => {
+    const projectToEdit = projects.find(project => project._id === id);
+    setEditingProjectId(id);
+    setUpdatedProjectTitle(projectToEdit.project);
+    setUpdatedProjectStatus(projectToEdit.status);
+    setUpdatedProjectCreatedOn(projectToEdit.createdOn);
+    setUpdatedProjectDeadline(projectToEdit.deadline);
+    setUpdateFinishedOn(projectToEdit.finishedOn)
+
+};
+
+// Function to update a project
+const handleUpdate = async (id) => {
+    try {
+        await fetch(`${URL}/project/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                project: updatedProjectTitle,
+                status: updatedProjectStatus, 
+                createdOn: updatedProjectCreatedOn,
+                deadline: updatedProjectDeadline,
+                finishedOn: updateFinishedOn,
+            }),
+        });
+        setProjects(projects.map(project => {
+            if (project._id === id) {
+                return {
+                    ...project,
+                    project: updatedProjectTitle,
+                    status: updatedProjectStatus, 
+                    createdOn: updatedProjectCreatedOn,
+                    deadline: updatedProjectDeadline,
+                    finishedOn: updateFinishedOn,
+                };
+            }
+            return project;
+        }));
+        setEditingProjectId(null);
+        updatedProjectTitle('');
+        updatedProjectStatus('');
+        updatedProjectCreatedOn('');
+        updatedProjectDeadline('');
+        updateFinishedOn('')
+
+    } catch (error) {
+        console.error('Error updating projects:', error);
+    }
+};
     console.log(projects)
 
     if(projects.isLoading){
@@ -42,38 +132,57 @@ const URL = process.env.REACT_APP_URL;
         <div>
         <h3>Create a project</h3>
             {/*added */}
-            <Form action='/create' method='post'>
-                <input type='input' name='name' placeholder="project's name"/>
-                <input type='input' name='image' placeholder="project's picture" />
-                <input type='input' name='title' placeholder="project's title" />
-                <input type='submit' value={'create project'} />
-            </Form>
+            <form onSubmit={handleAddproject}>
+                <input type='text' name='project' value={newProjectTitle} onChange={(v) => setNewProjectTitle(v.target.value)} placeholder="project title"/>
+
+                {/* <input type='text' name='status' value={newProjectStatus} onChange={(v) => setNewProjectStatus(v.target.value)} placeholder="Project status" /> */}
+
+                {/* <input type='text' name='createdOn' value={newProjectCreatedOn} onChange={(v) => setNewProjectCreatedOn(v.target.value)} placeholder="Project created date" /> */}
+
+                <input type='date' name='deadline' value={newProjectDeadline} onChange={(v) => setNewProjectDeadline(v.target.value)} placeholder="Project deadline" />
+
+                {/* <input type='text' name='finishedOn' value={newFinishedOn} onChange={(v) => setNewFinishedOn(v.target.value)} placeholder="Project finished date" /> */}
+
+                <input type='submit' value={'Add project'} />
+            </form>
+
             {/*end added */}
 
-            <h3>People</h3>
-            {projects.map(project => {
-                return(
-                    <div key={project._id} className="project">
-                        <Link to={`/${project._id}`}>
-                            <h1>{project.project}</h1>
-                        </Link>
-                        <div className="status">
-                        <h4>{project.status}</h4>
-                        </div>
-                        <div className="created_on_date">
-                        <h4>{project.created_on}</h4>
-                        </div>
-                        <div className="deadline">
-                        <h4>{project.deadline}</h4>
-                        </div>
-                        <div className="finished_on">
-                        <h4>{project.finish_on}</h4>
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
+            {/* Display the list of projects */}
+            <h3>Projects</h3>
+            
+            <div className="project-card-list">
+                {projects.slice(0).reverse().map(project => (
+                    <div key={project._id} className="project-card">
+                        {/* Check if project is being edited */}
+                        {editingProjectId === project._id ? (
+                            // If editing, display input fields
+                            <div>
+                                <input type='text' value={updatedProjectTitle} onChange={(v) => setUpdatedProjectTitle(v.target.value)} />
+                                {/* <input type='text' value={updatedProjectStatus} onChange={(v) => setUpdatedProjectStatus(v.target.value)}/> */}
+                                {/* <input type='text' value={updatedProjectCreatedOn} onChange={(v) => setUpdatedProjectCreatedOn(v.target.value)}/> */}
+                                <input type='text' value={updatedProjectDeadline} onChange={(v) => setUpdatedProjectDeadline(v.target.value)}/>
 
+                                {/* <input type='text' value={updateFinishedOn} onChange={(v) => setUpdateFinishedOn(v.target.value)}/> */}
+
+                                <button onClick={() => handleUpdate(project._id)}>Save</button>
+                            </div>
+                        ) : (
+                            // If not editing, display project  as button, and edit and delete buttons
+                            <div>
+                                <button className="project-button" onClick={() => window.open(project.url, '_blank')}>
+                                    <h2>{project.project}</h2>
+                                </button>
+                                <div className="project-actions">
+                                    <button onClick={() => handleEdit(project._id)}><i className="fas fa-pencil-alt"></i></button>
+                                    <button onClick={() => handleDelete(project._id)}><i className="fas fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+            </div>
     )
 }
 
