@@ -1,0 +1,20 @@
+[
+    {
+      "project": "UX Research",
+      "username": "username",
+      "status": "in progress",
+      "guests": [null],
+      "created_on": "2024-02-18T10:30:45Z",
+      "deadline": "2024-02-29T13:55:30Z",
+      "finished_on": null
+    },
+    {
+      "project": "Database Restructure",
+      "username": "username",
+      "status": "created",
+      "guests": [null],
+      "created_on": "2024-02-19T13:55:30Z",
+      "deadline": "2024-02-29T13:55:30Z",
+      "finished_on": null
+    }
+  ]
