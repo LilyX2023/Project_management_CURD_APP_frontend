@@ -7,7 +7,7 @@ The project roadmap is set in stages where we begin as a simple to-do list and g
 
 | status | version | functionality         | notes                                                                               |
 | ------ | ------- | --------------------- | ----------------------------------------------------------------------------------- |
-|        | v1      | Project managment CRUD app  | Full CRUD app. Each project get their own view and projects can hold subtasks. Subtasks will be be grouped together by the status. The prorities and assignees are shown on the each subtasks' show page. |
+|        | v1      | Project managment CRUD app  | Full CRUD app. Each project get their own view and projects can hold subtasks. Subtasks will be be grouped together by the status. The priorities and assignees are shown on the each subtasks' show page. |
 |        | v2 (Nice to have)| sharing               | users can now share projects with other users                                       |
 
 
