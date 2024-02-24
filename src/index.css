@@ -12,11 +12,11 @@ code {
     monospace;
 }
 
-/* *,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
-} */
+}
 
 .App {
   text-align: center;
@@ -28,6 +28,10 @@ code {
 
 .flex {
   display: flex;
+}
+
+.border-corner {
+  border-radius: 5px;
 }
 
 /* Project Subtasks page */
@@ -48,22 +52,34 @@ code {
 .subtasks {
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
   background-color: #FAFAF9; 
   padding: 20px 0;
   border: 0.8px solid black;
   width: 30%;
 }
 
+.status-heading {
+  text-align: left;
+}
+
 .task-card {
   background-color: white;
   border: 1px solid rgb(40, 39, 39);
-  height: 70%;
+  height: 100px;
   width: 80%;
+  margin-bottom: 5%;
 }
 
 .task-details {
   text-decoration: none;
   color: black;
   font-size: 0.6rem;
+}
+
+.priority {
+  width: 50px;  /* Width of the circle */
+  height: 30px; /* Height of the circle */ 
+  border-radius: 50px 50px 50px 50px; /* Top left, top right, bottom right, bottom left */
+  background-color: rgb(141, 220, 141);
+  padding: 5% 0;
 }
