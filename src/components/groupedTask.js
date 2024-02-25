@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 
 function GroupedTask({tasks, heading}) {
 
+    // users enter priority as 1,2 or 3 but we display it as Low, Medium, High
     function priorityNumberToString(priority) {
         if (priority === 1) {
             return ['High', 'red']
@@ -14,9 +15,13 @@ function GroupedTask({tasks, heading}) {
         }
     }
 
+    // sorting tasks based on priority 1, 2, 3 in ascending order with highest priority (priority 1) at the top
+    tasks.sort((a, b) => a.priority - b.priority)
+
     return (
         <div className="subtasks flex border-corner">
             <h2 className="status-heading"> {heading} </h2>
+
             {tasks.map(projectTask => {
                 const [priorityLabel, priorityColor] = priorityNumberToString(projectTask.priority)
                 const className = `priority ${priorityColor}`

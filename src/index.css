@@ -80,8 +80,22 @@ code {
   width: 60px;  /* Width of the circle */
   height: 30px; /* Height of the circle */ 
   border-radius: 50px 50px 50px 50px; /* Top left, top right, bottom right, bottom left */
-  background-color: rgb(141, 220, 141);
   padding: 5px 0;
+  margin-top: 5px;
+  margin-left: 5px;
   font-weight: 600;
   font-size: 0.7rem;
 }
+
+.green {
+  background-color: rgb(141, 220, 141);
+}
+
+.red {
+  background-color: rgb(233, 72, 72);
+}
+
+.yellow {
+  background-color: rgb(225, 225, 93);
+}
+
