@@ -1,12 +1,21 @@
-import { useLoaderData, Form } from "react-router-dom"
-import { useState } from "react"
+import { useLoaderData, Form, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import GroupedTask from "../components/groupedTask"
+import { projectLoader } from "../loaders"
 
 function ProjectShow() {
     const [projectTasks, setProjectTasks] = useState(useLoaderData())
+    // const params = useParams()
+    // const [addTasks, setAddTasks] = useState(false)
     const [buttonClicked, setButtonClicked] = useState(false) // for adding new task
     
     const URL = process.env.REACT_APP_URL
+
+    // useEffect(() => {
+    //     // Calling loader function inside useEffect
+    //     console.log('inside useffect', params, {params})
+    //     let projectTasks = projectLoader(params)
+    //   }, [addTasks])
 
     async function handleNewTask(event) {
         event.preventDefault()
@@ -23,7 +32,7 @@ function ProjectShow() {
             status: 'toDo'  // by default any new task will have 'toDo' status
         }
 
-        await fetch(`${URL}/projects/tasks`, {
+        const response = await fetch(`${URL}/projects/tasks`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,14 +40,18 @@ function ProjectShow() {
             body: JSON.stringify(createdTask)
         })
 
+        //To get the newly created task along with all fields added at the backend like mongodb _id, here using the response body. The response sent from server after the POST request, includes the status code, headers, and a body. The body of the response contains the newly created resource (in this case, the task), including any additional properties that the backend server has added
+        const newTaskWithId = await response.json()
+
+        // Update state with the newly created task
         // creating a new array so that memory reference to projectTasks changes and React detects this as a change in state variable
-        setProjectTasks(projectTasks => [...projectTasks, createdTask])
+        setProjectTasks((prevTasks) => [...prevTasks, newTaskWithId])
 
         // reset buttonClicked to hide the form after submission
         setButtonClicked(false)
 
     }
-
+    
 
     // grouping subtasks of a project based on its status
     const todoTasks = projectTasks.filter((item) => { 

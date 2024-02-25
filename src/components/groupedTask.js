@@ -15,13 +15,12 @@ function GroupedTask({tasks, heading}) {
         }
     }
 
-    console.log(tasks)
 
     // sorting tasks based on priority 1, 2, 3 in ascending order with highest priority (priority 1) at the top
     tasks.sort((a, b) => a.priority - b.priority)
 
     // sorting based on creation time, such more recently added task shows at the top
-    tasks.sort((a, b) => b.created_on - a.created_on)
+    // tasks.sort((a, b) => b.created_on - a.created_on)
 
     return (
         <div className="subtasks flex border-corner">
