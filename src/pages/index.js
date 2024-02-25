@@ -128,38 +128,62 @@ const Landing = () => {
   }
   return (
     <div>
-      <h3>Create a project</h3>
-      {/*added */}
-      <form onSubmit={handleAddproject}>
-        <input
+      <div className="new-project-container">
+        <div className="new-project-label">New project name:</div>
+        {/*added */}
+        <form className="new-project-form" onSubmit={handleAddproject}>
+          <input
+            className="project-name"
+            type="text"
+            name="project"
+            value={newProjectTitle}
+            onChange={v => setNewProjectTitle(v.target.value)}
+            placeholder=""
+          />
+
+          <input
+            style={{ display: 'none' }}
+            type="text"
+            name="status"
+            value={newProjectStatus}
+            onChange={v => setNewProjectStatus(v.target.value)}
+          />
+
+          <input
+            style={{ display: 'none' }}
+            type="date"
+            name="createdOn"
+            value={newProjectCreatedOn}
+            onChange={v => setNewProjectCreatedOn(v.target.value)}
+            placeholder="Project created date"
+          />
+
+          <div className="new-project-label">deadline:</div>
+          <input
+            className="project-deadline"
+            type="date"
+            name="deadline"
+            value={newProjectDeadline}
+            onChange={v => setNewProjectDeadline(v.target.value)}
+            placeholder="Project deadline"
+          />
+
+          {/* <input
           type="text"
-          name="project"
-          value={newProjectTitle}
-          onChange={v => setNewProjectTitle(v.target.value)}
-          placeholder="project title"
-        />
+          name="finishedOn"
+          value={newFinishedOn}
+          onChange={v => setNewFinishedOn(v.target.value)}
+          placeholder="Project finished date"
+        /> */}
 
-        {/* <input type='text' name='status' value={newProjectStatus} onChange={(v) => setNewProjectStatus(v.target.value)} placeholder="Project status" /> */}
-
-        {/* <input type='text' name='createdOn' value={newProjectCreatedOn} onChange={(v) => setNewProjectCreatedOn(v.target.value)} placeholder="Project created date" /> */}
-
-        <input
-          type="date"
-          name="deadline"
-          value={newProjectDeadline}
-          onChange={v => setNewProjectDeadline(v.target.value)}
-          placeholder="Project deadline"
-        />
-
-        {/* <input type='text' name='finishedOn' value={newFinishedOn} onChange={(v) => setNewFinishedOn(v.target.value)} placeholder="Project finished date" /> */}
-
-        <input type="submit" value={'Add project'} />
-      </form>
+          <input type="submit" value={'Create New Project'} />
+        </form>
+      </div>
 
       {/*end added */}
 
       {/* Display the list of projects */}
-      <h3>Projects</h3>
+      {/* <h3>Projects</h3> */}
 
       <div className="project-card-list">
         {projects
@@ -170,8 +194,9 @@ const Landing = () => {
               {/* Check if project is being edited */}
               {editingProjectId === project._id ? (
                 // If editing, display input fields
-                <div>
+                <div className="project-card-title">
                   <input
+                    className="project-button"
                     type="text"
                     value={updatedProjectTitle}
                     onChange={v => setUpdatedProjectTitle(v.target.value)}
@@ -179,7 +204,7 @@ const Landing = () => {
                   {/* <input type='text' value={updatedProjectStatus} onChange={(v) => setUpdatedProjectStatus(v.target.value)}/> */}
                   {/* <input type='text' value={updatedProjectCreatedOn} onChange={(v) => setUpdatedProjectCreatedOn(v.target.value)}/> */}
                   <input
-                    type="text"
+                    type="date"
                     value={updatedProjectDeadline}
                     onChange={v => setUpdatedProjectDeadline(v.target.value)}
                   />
@@ -190,9 +215,9 @@ const Landing = () => {
                 </div>
               ) : (
                 // If not editing, display project  as button, and edit and delete buttons
-                <div>
+                <div className="project-card-title">
                   <a href={`/projects/${project._id}`} className="project-button">
-                    <h2>{project.project}</h2>
+                    {project.project}
                   </a>
                   <div className="project-actions">
                     <button onClick={() => handleEdit(project._id)}>
