@@ -16,35 +16,28 @@ code {
   box-sizing: border-box;
 }
 
-.App {
-  text-align: center;
-}
-
-* {
-  /* outline: 1px solid green; */
+.App,
+body {
+  max-width: 100svw;
 }
 
 .flex {
   display: flex;
 }
 
-.border-corner {
-  border-radius: 5px;
-}
-
-/* Project Subtasks page */
 .project-name-show {
-  margin: 0; /* to remove any default browser margin */
+  margin: 0;
   margin-bottom: 3%;
   text-align: left;
-  padding: 2% 0; /* padding top and bottom */
-  padding-left: 5%; /* padding to left since in previous line left padding was 0 */
+  padding: 2% 0;
+  padding-left: 5%;
   background-color: #dbdad6;
-  align-items: center; /*aligning the h1 text to center */
+  align-items: center;
 }
 
 .project-show-task {
   justify-content: space-evenly;
+  max-width: 100svw;
 }
 
 .subtasks {
@@ -52,20 +45,18 @@ code {
   align-items: center;
   flex-direction: column;
   background-color: #fafaf9;
-  padding: 20px 0;
   border: 0.8px solid black;
   width: 30%;
+  padding-bottom: 6px;
 }
 
 .status-heading {
-  margin: 0px;
+  margin: 10px 0px 6px 0px;
 }
 
 .task-card {
-  min-height: 4rem;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 10px 0px;
+  width: calc(100% - 20px);
+  margin: 4px 10px;
 }
 
 .task-details {
@@ -74,26 +65,46 @@ code {
   color: black;
   font-size: 0.6rem;
   display: flex;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding: 16px;
+  flex-direction: row;
   border-radius: 6px;
 }
 
-.task-details > h2 {
+.task-left-section {
+  align-items: center;
+  display: flex;
+  padding: 6px;
+}
+
+.task-right-section > h2 {
   text-align: right;
   margin: 0px;
   width: 100%;
 }
 
 .priority {
-  width: 60px; /* Width of the circle */
-  height: 30px; /* Height of the circle */
-  border-radius: 50px 50px 50px 50px; /* Top left, top right, bottom right, bottom left */
-  padding: 5px 0;
+  min-width: 8ch;
+  height: 30px;
+  border-radius: 30px;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+
+.task-right-section {
+  /* border-top: 1px solid grey; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  margin: 6px;
+}
+
+.due-date {
+  margin-top: 4px;
 }
 
 .green {
