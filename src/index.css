@@ -26,7 +26,7 @@ code {
   --base: 50%;
   --bright: 85%;
   --light: 90%;
-  --white: 96%;
+  --white: 94%;
   --highlight: 100%;
 
   --pri-black: hsl(var(--pri-hue), var(--sat), var(--black));
@@ -128,13 +128,17 @@ nav {
 }
 
 .project-card-title {
+  font-weight: 700;
   width: 100%;
-  background-color: var(--pri-bright);
+  background-color: var(--pri-white);
   padding: 16px;
   margin: 8px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid var(--pri-highlight);
+  border-radius: 16px;
+  box-shadow: -4px -4px 8px var(--pri-highlight), 4px 4px 8px var(--pri-bright);
 }
 .project-card-title a {
   text-decoration: none;

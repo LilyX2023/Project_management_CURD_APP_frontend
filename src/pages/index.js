@@ -29,22 +29,30 @@ const Landing = () => {
   }, [])
 
   // Function to add a new project
+
   const handleAddproject = async e => {
     e.preventDefault()
+    const dateStamp = Date.now()
+    console.log(new Date(dateStamp).toString())
+    const sendingData = JSON.stringify({
+      project: newProjectTitle,
+      username: 'username',
+      status: newProjectStatus,
+      created_on: '',
+      deadline: newProjectDeadline,
+      finished_on: newFinishedOn
+    })
+    console.log(sendingData)
+
     try {
-      const response = await fetch(`${URL}/project`, {
+      const response = await fetch(`${URL}/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          project: newProjectTitle,
-          status: newProjectStatus,
-          createdOn: newProjectCreatedOn,
-          deadline: newProjectDeadline,
-          finishedOn: newFinishedOn
-        })
+        body: JSON.stringify(sendingData)
       })
+
       const data = await response.json()
       setProjects([...projects, data])
       setNewProjectTitle('')
@@ -60,7 +68,7 @@ const Landing = () => {
   // Function to delete a project
   const handleDelete = async id => {
     try {
-      await fetch(`${URL}/project/${id}`, {
+      await fetch(`${URL}/projects/${id}`, {
         method: 'DELETE'
       })
       setProjects(projects.filter(project => project._id !== id))
@@ -83,7 +91,7 @@ const Landing = () => {
   // Function to update a project
   const handleUpdate = async id => {
     try {
-      await fetch(`${URL}/project/${id}`, {
+      await fetch(`${URL}/projects/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -147,15 +155,6 @@ const Landing = () => {
             name="status"
             value={newProjectStatus}
             onChange={v => setNewProjectStatus(v.target.value)}
-          />
-
-          <input
-            style={{ display: 'none' }}
-            type="date"
-            name="createdOn"
-            value={newProjectCreatedOn}
-            onChange={v => setNewProjectCreatedOn(v.target.value)}
-            placeholder="Project created date"
           />
 
           <div className="new-project-label">deadline:</div>
