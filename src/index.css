@@ -19,29 +19,33 @@ code {
 :root {
   --pri-hue: 200;
   --acc-hue: calc(var(--pri-hue) + 180);
-  --sat: 100%;
+  --sat: 80%;
 
   --black: 3%;
   --dark: 15%;
   --base: 50%;
   --bright: 85%;
-  --white: 97%;
+  --light: 90%;
+  --white: 96%;
+  --highlight: 100%;
 
   --pri-black: hsl(var(--pri-hue), var(--sat), var(--black));
   --pri-dark: hsl(var(--pri-hue), var(--sat), var(--dark));
   --pri-base: hsl(var(--pri-hue), var(--sat), var(--base));
   --pri-bright: hsl(var(--pri-hue), var(--sat), var(--bright));
+  --pri-light: hsl(var(--pri-hue), var(--sat), var(--light));
   --pri-white: hsl(var(--pri-hue), var(--sat), var(--white));
+  --pri-highlight: hsl(var(--pri-hue), var(--sat), var(--highlight));
 
   --accent: hsl(var(--acc-hue), 92%, 55%);
 
-  --green-bright: hsl(125, 100%, 80%);
-  --yellow-bright: hsl(55, 100%, 80%);
-  --red-bright: hsl(0, 100%, 80%);
+  --green-bright: hsl(125, 80%, 80%);
+  --yellow-bright: hsl(55, 80%, 80%);
+  --red-bright: hsl(0, 80%, 80%);
 
-  --green-base: hsl(125, 100%, 50%);
-  --yellow-base: hsl(55, 100%, 50%);
-  --red-base: hsl(0, 100%, 50%);
+  --green-base: hsla(125, 100%, 50%, 0.6);
+  --yellow-base: hsla(55, 100%, 50%, 0.6);
+  --red-base: hsla(0, 100%, 50%, 0.6);
 }
 
 .App,
@@ -176,24 +180,26 @@ nav {
 }
 
 .task-card {
-  width: calc(100% - 20px);
-  margin: 4px 10px;
+  width: calc(100% - 32px);
+  margin: 8px 16px;
 }
 
 .task-details {
   text-decoration: none;
-  border: 1px solid var(--pri-base);
+  border: 2px solid var(--pri-highlight);
   color: var(--pri-black);
   font-size: 0.6rem;
   display: flex;
   flex-direction: row;
   border-radius: 6px;
+  background-color: var(--pri-white);
+  box-shadow: -4px -4px 8px var(--pri-highlight), 4px 4px 8px var(--pri-bright);
 }
 
 .task-left-section {
   align-items: center;
   display: flex;
-  padding: 6px;
+  margin: 12px;
 }
 
 .task-right-section > h2 {
@@ -219,7 +225,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 6px;
+  margin: 12px;
 }
 
 .due-date {
@@ -229,11 +235,11 @@ nav {
 
 .green {
   background-color: var(--green-bright);
-  box-shadow: 0px 0px 8px var(--green-base);
+  box-shadow: 0px 0px 16px var(--green-base);
 }
 .yellow {
   background-color: var(--yellow-bright);
-  box-shadow: 0px 0px 8px var(--yellow-base);
+  box-shadow: 0px 0px 16px var(--yellow-base);
 }
 .red {
   background-color: var(--red-bright);
