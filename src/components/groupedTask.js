@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 function GroupedTask({ tasks, heading }) {
   function priorityNumberToString(priority) {
-    if (priority === 1) {
+    if (priority === '1') {
       return ['High', 'red']
-    } else if (priority === 2) {
+    } else if (priority === '2') {
       return ['Medium', 'yellow']
     } else {
       // priority 3 and more is of 'Low' priority
