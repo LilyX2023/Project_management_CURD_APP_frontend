@@ -88,14 +88,69 @@ code {
 }
 
 .green {
-  background-color: rgb(141, 220, 141);
+  background-color: hsl(124, 100%, 80%);
 }
-
-.red {
-  background-color: rgb(233, 72, 72);
-}
-
 .yellow {
-  background-color: rgb(225, 225, 93);
+  background-color: hsl(53, 100%, 80%);
+}
+.red {
+  background-color: hsl(0, 100%, 80%);
+}
+
+.new-task-button {
+  border: 2px dotted #737171;
+  padding: 10px 20px;
+  background-color: white;
+  color: #333;
+  margin-bottom: 10px;
+  width: auto; 
+  transition: all 0.3s ease;
+}
+
+.new-task-button:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  background-color: #d9d4d4;
+}
+
+.new-task-form {
+  flex-direction: column;
+  text-align: left;
+}
+
+.new-task-button, .new-task-form {
+  margin-left: 20px;
+}
+
+.task-field {
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.new-task-button, .task-field {
+  width: 300px;
+}
+
+.task-field label {
+  font-weight: bold;
+}
+
+.task-field textarea {
+  height: 80px;
+  padding: 8px;
+  resize: none;
+}
+
+.task-field select {
+  padding: 8px 0;
+  font-size: 0.9em;
+  
+}
+
+.create-task-button {
+  background-color: #a9a6a6;
+  padding: 8px 90px;
+  margin-bottom: 20px;
+  border: none;
+  font-size: 0.9em;
 }
 

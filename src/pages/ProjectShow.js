@@ -1,37 +1,85 @@
 import { useLoaderData, Form } from "react-router-dom"
+import { useState } from "react"
 import GroupedTask from "../components/groupedTask"
 
 function ProjectShow() {
-    const projectTasks = useLoaderData()
-    // console.log('project', projectTasks)
+    const [projectTasks, setProjectTasks] = useState(useLoaderData())
+    const [buttonClicked, setButtonClicked] = useState(false) // for adding new task
+    
+    const URL = process.env.REACT_APP_URL
+
+    async function handleNewTask(event) {
+        event.preventDefault()
+
+        const formData = new FormData(event.target)
+        const createdTask = {
+            task: formData.get('task'),
+            priority: formData.get('priority'),
+
+            // using the first object since 'projectId' and 'project' field will have same value across all subtasks for a particular project
+            projectId: projectTasks[0]['projectId'],
+            project: projectTasks[0]['project'],
+
+            status: 'toDo'  // by default any new task will have 'toDo' status
+        }
+
+        await fetch(`${URL}/projects/tasks`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(createdTask)
+        })
+
+        // creating a new array so that memory reference to projectTasks changes and React detects this as a change in state variable
+        setProjectTasks(projectTasks => [...projectTasks, createdTask])
+
+        // reset buttonClicked to hide the form after submission
+        setButtonClicked(false)
+
+    }
+
 
     // grouping subtasks of a project based on its status
-    const todo = projectTasks.filter((item) => { 
-        return item['status'] === 'todo'})
-    const inProgress = projectTasks.filter((item) => { 
-        return item['status'] === 'inprogress'})
-    const done = projectTasks.filter((item) => { 
+    const todoTasks = projectTasks.filter((item) => { 
+        return item['status'] === 'toDo'})
+    const inProgressTasks = projectTasks.filter((item) => { 
+        return item['status'] === 'inProgress'})
+    const completedTasks = projectTasks.filter((item) => { 
         return item['status'] === 'completed'})
     
+
     return (
         <div className="project-show">
             <h1 className="project-name-show">{projectTasks[0]['project']}</h1>
 
-            <Form action={`/projects/${projectTasks[0].projectId}/tasks/create`} method='post' className>
-                <input type='input' name='task' placeholder="Task description"/>
-                <select name='priority'>
-                    <option value="" disabled selected>Priority</option>
-                    <option value="1">High</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Low</option>
-                </select>
-                <input type='submit' value={'Add Task'} />
-            </Form>
+            <button className='new-task-button flex border-corner' onClick={() => {setButtonClicked(true)}}>
+                <i class="fa-sharp fa-light fa-plus"> Add a new task </i>
+            </button>
+
+           { buttonClicked ? 
+           <Form onSubmit={handleNewTask} className='new-task-form flex'>
+                <div className="task-field flex">
+                    <label> Description</label>
+                    <textarea className="border-corner" name='task' placeholder="Enter task description"/>
+                </div>
+                <div className="task-field flex">
+                    <label>Priority</label>
+                    <select name='priority' className="border-corner">
+                        <option value="1">High</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Low</option>
+                    </select>
+                </div>
+                <div >
+                    <input className="task-field border-corner create-task-button" type='submit' value='Create Task' />
+                </div>
+            </Form>  : null }
 
             <div className="project-show-task flex">
-                <GroupedTask tasks={projectTasks} heading={"To do"}/>
-                <GroupedTask tasks={projectTasks.slice(4,8)} heading={"In progress"}/>
-                <GroupedTask tasks={projectTasks.slice(3,5)} heading={"Completed"}/>
+                <GroupedTask tasks={todoTasks} heading={"To do"}/>
+                <GroupedTask tasks={inProgressTasks} heading={"In progress"}/>
+                <GroupedTask tasks={completedTasks} heading={"Completed"}/>
             
             </div>
         </div>

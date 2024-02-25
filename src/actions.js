@@ -55,27 +55,3 @@ export const deleteAction = async ({params}) => {
 
     return redirect('/')
 }
-
-//********************************* */
-// Actions on project subtasks
-//********************************* */
-
-export const createTaskAction = async ({ request, params }) => {
-    const formData = await request.formData() 
-    console.log(formData)
-    const createdTask = {
-        task: formData.get('task'),
-        priority: formData.get('priority'),
-        projectId: params.id,
-    }
-
-    await fetch(`${URL}/projects/tasks`, {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(createdTask)
-    })
-
-    return redirect(`/projects/${params.id}`) // redirecting to subtasks page
-}

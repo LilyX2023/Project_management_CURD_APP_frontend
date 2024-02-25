@@ -4,10 +4,10 @@ function GroupedTask({tasks, heading}) {
 
     // users enter priority as 1,2 or 3 but we display it as Low, Medium, High
     function priorityNumberToString(priority) {
-        if (priority === 1) {
+        if (priority === '1') {
             return ['High', 'red']
         }
-        else if (priority === 2) {
+        else if (priority === '2') {
             return ['Medium', 'yellow']
         }
         else { // priority 3 and more is of 'Low' priority
@@ -15,8 +15,13 @@ function GroupedTask({tasks, heading}) {
         }
     }
 
+    console.log(tasks)
+
     // sorting tasks based on priority 1, 2, 3 in ascending order with highest priority (priority 1) at the top
     tasks.sort((a, b) => a.priority - b.priority)
+
+    // sorting based on creation time, such more recently added task shows at the top
+    tasks.sort((a, b) => b.created_on - a.created_on)
 
     return (
         <div className="subtasks flex border-corner">

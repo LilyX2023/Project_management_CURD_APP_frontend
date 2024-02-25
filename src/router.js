@@ -3,7 +3,6 @@ import App from './App'
 import ProjectShow from './pages/ProjectShow'
 import { projectLoader } from './loaders'
 import {updateAction, createAction, deleteAction} from './actions'
-import {createTaskAction} from './actions'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -16,7 +15,7 @@ const router = createBrowserRouter(
             <Route path='delete/:id' action={deleteAction}/>
             
             {/* Route to create a subtask of a project */}
-            <Route path='projects/:id/tasks/create' action={createTaskAction}/>
+            {/* <Route path='projects/:id/tasks/create' action={createTaskAction}/> */}
         </Route>
     )
 )
