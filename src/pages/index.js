@@ -30,18 +30,18 @@ const Landing = () => {
 
   // Function to add a new project
 
-  const handleAddproject = async e => {
+  const handleAddproject = async (e) => {
     e.preventDefault()
     const dateStamp = Date.now()
     console.log(new Date(dateStamp).toString())
-    const sendingData = JSON.stringify({
+    const sendingData = {
       project: newProjectTitle,
       username: 'username',
       status: newProjectStatus,
       created_on: '',
       deadline: newProjectDeadline,
       finished_on: newFinishedOn
-    })
+    }
     console.log(sendingData)
 
     try {
