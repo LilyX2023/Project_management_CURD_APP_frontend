@@ -14,8 +14,6 @@ const router = createBrowserRouter(
             <Route path='update/:id' action={updateAction}/>
             <Route path='delete/:id' action={deleteAction}/>
             
-            {/* Route to create a subtask of a project */}
-            {/* <Route path='projects/:id/tasks/create' action={createTaskAction}/> */}
         </Route>
     )
 )
