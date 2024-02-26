@@ -54,4 +54,5 @@ export const deleteAction = async ({params}) => {
     });
 
     return redirect('/')
+
 }
