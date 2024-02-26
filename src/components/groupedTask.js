@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function GroupedTask({tasks, heading}) {
 
@@ -14,6 +14,7 @@ function GroupedTask({tasks, heading}) {
             return ['Low', 'green']
         }
     }
+  }
 
 
     // sorting tasks based on priority 1, 2, 3 in ascending order with highest priority (priority 1) at the top
@@ -28,23 +29,26 @@ function GroupedTask({tasks, heading}) {
 
             {tasks.map(projectTask => {
                 const [priorityLabel, priorityColor] = priorityNumberToString(projectTask.priority)
+                const created_on = projectTask.created_on
                 const className = `priority ${priorityColor}`
-            return(
-                <div key={projectTask._id} className='task-card border-corner'>
+                return (
+                  <div key={projectTask._id} className="task-card border-corner">
                     <Link to={`/projects/tasks/${projectTask._id}`} className="task-details">
-                        <div className={className}> 
-                            {priorityLabel} 
-                        </div>
+                      <div className="task-left-section">
+                        <div className={className}>{priorityLabel}</div>
+                      </div>
+                      <div className="task-right-section">
                         <h2> {projectTask.task} </h2>
+                        <div className="due-date">
+                          <b>Due on:</b> {created_on}
+                        </div>
+                      </div>
                     </Link>
-
-                </div>
-                )
-            })}
+                  </div>
+                  )
+               })}
         </div>
-       
-
-    )
+      )
 }
 
 export default GroupedTask
