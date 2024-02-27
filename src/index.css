@@ -237,6 +237,14 @@ nav {
   text-align: right;
 }
 
+.project-card-title .project-button #project-due-date{
+  margin-top: 4px;
+  color:#F42272;
+  opacity: 90%;
+  font-size: 0.75rem;
+
+}
+
 .green {
   background-color: var(--green-bright);
   box-shadow: 0px 0px 16px var(--green-base);
