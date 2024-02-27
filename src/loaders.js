@@ -1,3 +1,5 @@
+// loaders.js
+
 const URL = process.env.REACT_APP_URL;
 
 export const projectsLoader = async () => {
@@ -11,3 +13,14 @@ export const projectLoader = async ({params}) => {
     const data = await response.json()
     return data
 }
+
+export const taskLoader = async ({ params }) => {
+    try {
+      const response = await fetch(`${URL}/tasks/${params.id}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error loading task:', error);
+      return null;
+    }
+  };
