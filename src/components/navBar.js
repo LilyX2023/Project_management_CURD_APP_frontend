@@ -1,3 +1,5 @@
+// components/navBar.js
+
 function NavBar() {
   return (
     <nav>
