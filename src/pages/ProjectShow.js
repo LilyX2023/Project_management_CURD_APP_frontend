@@ -37,8 +37,8 @@ function ProjectShow() {
             priority: formData.get('priority'),
 
             // using the first object since 'projectId' and 'project' field will have same value across all subtasks for a particular project
-            projectId: projectTasks[0]['projectId'],
-            project: projectTasks[0]['project'],
+            projectId: projectTasks?.[0]['projectId'] || "",
+            project: projectTasks?.[0]['project'] || "",
 
             status: 'toDo'  // by default any new task will have 'toDo' status
         }
@@ -67,36 +67,43 @@ function ProjectShow() {
 
         // setting add tasks state to true, so that page is re-rendered with the mongodb _id using useEffect callback
         setAddTasks(true)
+      
+        setProjectTasks(null)  // for smoother rendering so that Virtual DOM now has to compare null to the new rendered component
 
     }
     
 
     // grouping subtasks of a project based on its status
-    const todoTasks = projectTasks.filter((item) => { 
-        return item['status'] === 'toDo'})
-    const inProgressTasks = projectTasks.filter((item) => { 
-        return item['status'] === 'inProgress'})
-    const completedTasks = projectTasks.filter((item) => { 
-        return item['status'] === 'completed'})
+
+        const todoTasks = projectTasks?.filter((item) => { 
+            return item['status'] === 'toDo'})
+        const inProgressTasks = projectTasks?.filter((item) => { 
+            return item['status'] === 'inProgress'})
+        const completedTasks = projectTasks?.filter((item) => { 
+            return item['status'] === 'completed'})
     
+
 
     return (
         <div className="project-show">
-            <h1 className="project-name-show">{projectTasks[0]['project']}</h1>
-
+             { projectTasks && 
+            <h1 className="project-name-show">{projectTasks?.[0]?.['project']}</h1>
+             }
             <button className='new-task-button flex border-corner' onClick={() => {setButtonClicked(true)}}>
                 <i class="fa-sharp fa-light fa-plus"> Add a new task </i>
             </button>
 
            { buttonClicked ? 
            <NewTask handleNewTask={handleNewTask} />  : null }
-
+            
+            {projectTasks &&
             <div className="project-show-task flex">
                 <GroupedTask tasks={todoTasks} heading={"To do"}/>
                 <GroupedTask tasks={inProgressTasks} heading={"In progress"}/>
                 <GroupedTask tasks={completedTasks} heading={"Completed"}/>
             
             </div>
+              }
         </div>
         
     )
