@@ -6,6 +6,7 @@ import NewTask from "../components/newTask"
 
 function ProjectShow() {
     const [projectTasks, setProjectTasks] = useState(useLoaderData())
+    console.log(projectTasks)
     const params = useParams() // gives {id: '<id>'}
     const [addTasks, setAddTasks] = useState(false)
     const [buttonClicked, setButtonClicked] = useState(false) // for adding new task

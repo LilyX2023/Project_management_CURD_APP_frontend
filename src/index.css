@@ -1,15 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 *,
@@ -18,83 +16,238 @@ code {
   box-sizing: border-box;
 }
 
-.App {
-  text-align: center;
+:root {
+  --pri-hue: 200;
+  --acc-hue: calc(var(--pri-hue) + 180);
+  --sat: 80%;
+
+  --black: 3%;
+  --dark: 15%;
+  --base: 50%;
+  --bright: 85%;
+  --light: 90%;
+  --white: 94%;
+  --highlight: 100%;
+
+  --pri-black: hsl(var(--pri-hue), var(--sat), var(--black));
+  --pri-dark: hsl(var(--pri-hue), var(--sat), var(--dark));
+  --pri-base: hsl(var(--pri-hue), var(--sat), var(--base));
+  --pri-bright: hsl(var(--pri-hue), var(--sat), var(--bright));
+  --pri-light: hsl(var(--pri-hue), var(--sat), var(--light));
+  --pri-white: hsl(var(--pri-hue), var(--sat), var(--white));
+  --pri-highlight: hsl(var(--pri-hue), var(--sat), var(--highlight));
+
+  --accent: hsl(var(--acc-hue), 92%, 55%);
+
+  --green-bright: hsl(125, 80%, 80%);
+  --yellow-bright: hsl(55, 80%, 80%);
+  --red-bright: hsl(0, 80%, 80%);
+
+  --green-base: hsla(125, 100%, 50%, 0.6);
+  --yellow-base: hsla(55, 100%, 50%, 0.6);
+  --red-base: hsla(0, 100%, 50%, 0.6);
 }
 
-* {
-  /* outline: 1px solid green; */
+.App,
+body {
+  max-width: 100svw;
+  background-color: var(--pri-white);
 }
 
 .flex {
   display: flex;
 }
 
-.border-corner {
-  border-radius: 5px;
+nav {
+  width: 100svw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--pri-base);
+}
+.logo {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+}
+.nav-right > .buttons a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Project Subtasks page */
-.project-name-show{
-  margin: 0; /* to remove any default browser margin */
-  margin-bottom: 3%;
+.new-project-container {
+  width: 100%;
+  background-color: var(--pri-bright);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px;
+}
+
+.new-project-form {
+  padding: 0px 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.new-project-form > input {
+  min-height: 18px;
+  margin: 0px 8px;
+}
+.new-project-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  margin-left: 16px;
+}
+
+.project-name-show {
+  margin: 0;
+  margin-bottom: 0px;
   text-align: left;
-  padding: 2% 0; /* padding top and bottom */
-  padding-left: 5%; /* padding to left since in previous line left padding was 0 */
-  background-color: #DBDAD6;
-  align-items: center; /*aligning the h1 text to center */
+  padding: 8px 16px;
+  background-color: var(--pri-bright);
+  align-items: center;
+}
+
+.project-name-show::before {
+  content: 'Project: ';
+  font-weight: 300;
+  font-size: 70%;
+  display: flex;
+  align-items: center;
+}
+
+.project-card-list {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+}
+
+.project-card-title {
+  font-weight: 700;
+  width: 100%;
+  background-color: var(--pri-white);
+  padding: 16px;
+  margin: 8px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--pri-highlight);
+  border-radius: 16px;
+  box-shadow: -4px -4px 8px var(--pri-highlight), 4px 4px 8px var(--pri-bright);
+}
+.project-card-title a {
+  text-decoration: none;
+  color: inherit;
+}
+.project-card-title input {
+  font-size: 1.7rem;
+}
+
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.project-actions > button {
+  margin: 8px;
+  height: 100%;
+}
+
+.project-card-title {
+  font-size: 2rem;
 }
 
 .project-show-task {
-  justify-content: space-around;
+  justify-content: space-evenly;
+  max-width: 100svw;
+  margin: 16px 0px;
 }
 
 .subtasks {
+  display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #FAFAF9; 
-  padding: 20px 0;
-  border: 0.8px solid black;
-  width: 30%;
+  background-color: var(--pri-white);
+  border: 1px solid var(--pri-base);
+  width: calc((100svw - 64px) / 3);
+  padding-bottom: 6px;
+  border-radius: 8px;
 }
 
 .status-heading {
-  text-align: left;
+  margin: 10px 0px 6px 0px;
 }
 
 .task-card {
-  background-color: white;
-  border: 1px solid rgb(40, 39, 39);
-  height: 100px;
-  width: 80%;
-  margin-bottom: 5%;
+  width: calc(100% - 32px);
+  margin: 8px 16px;
 }
 
 .task-details {
   text-decoration: none;
-  color: black;
+  border: 2px solid var(--pri-highlight);
+  color: var(--pri-black);
   font-size: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  border-radius: 6px;
+  background-color: var(--pri-white);
+  box-shadow: -4px -4px 8px var(--pri-highlight), 4px 4px 8px var(--pri-bright);
+}
+
+.task-left-section {
+  align-items: center;
+  display: flex;
+  margin: 12px;
+}
+
+.task-right-section > h2 {
+  text-align: right;
+  margin: 0px;
+  width: 100%;
 }
 
 .priority {
-  width: 60px;  /* Width of the circle */
-  height: 30px; /* Height of the circle */ 
-  border-radius: 50px 50px 50px 50px; /* Top left, top right, bottom right, bottom left */
-  padding: 5px 0;
-  margin-top: 5px;
-  margin-left: 5px;
+  min-width: 8ch;
+  height: 30px;
+  border-radius: 30px;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+
+.task-right-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 12px;
+}
+
+.due-date {
+  margin-top: 4px;
+  text-align: right;
 }
 
 .green {
-  background-color: hsl(124, 100%, 80%);
+  background-color: var(--green-bright);
+  box-shadow: 0px 0px 16px var(--green-base);
 }
 .yellow {
-  background-color: hsl(53, 100%, 80%);
+  background-color: var(--yellow-bright);
+  box-shadow: 0px 0px 16px var(--yellow-base);
 }
 .red {
-  background-color: hsl(0, 100%, 80%);
+  background-color: var(--red-bright);
+  box-shadow: 0px 0px 8px var(--red-base);
 }
 
 .new-task-button {
@@ -153,4 +306,3 @@ code {
   border: none;
   font-size: 0.9em;
 }
-
