@@ -217,6 +217,9 @@ const Landing = () => {
                 <div className="project-card-title">
                   <a href={`/projects/${project._id}`} className="project-button">
                     {project.project}
+                    <div id='project-due-date'>
+                    Due date: {project.deadline}
+                    </div>
                   </a>
                   <div className="project-actions">
                     <button onClick={() => handleEdit(project._id)}>
