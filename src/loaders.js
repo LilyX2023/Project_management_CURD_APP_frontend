@@ -7,7 +7,7 @@ export const projectsLoader = async () => {
 }
 
 export const projectLoader = async ({params}) => {
-    const response = await fetch(`${URL}/project/${params.id}`);
-    const project = await response.json();
-    return project;
+    const response = await fetch(`${URL}/projects/${params.id}`)
+    const data = await response.json()
+    return data
 }
