@@ -335,9 +335,56 @@ button {
 .update-button,
 .delete-button {
   background-color: #e3e0e0;
+  border: 0px;
 }
 
 .update-button:hover,
 .delete-button:hover {
   background-color: #aba9a9;
+}
+
+.task-show-name-container,
+.task-show-priority-container,
+.task-show-status-container {
+  display: flex;
+  margin: 6px 0px;
+}
+
+.task-show-name-container {
+  width: 100%;
+}
+.task-show-name-label,
+.task-show-status-label,
+.task-show-priority-label {
+  min-width: 8ch;
+}
+.task-show-name {
+  width: 100%;
+}
+.task-show-bottom-row-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-show-dropdowns-container {
+  display: flex;
+}
+
+.task-show-status-label {
+}
+.task-show-status {
+}
+
+.task-show-priority-label {
+  margin-left: 40px;
+}
+.task-show-priority {
+}
+
+.task-show-buttons-container {
+  display: flex;
+}
+.task-show-buttons-container > * {
+  margin: 8px;
 }
