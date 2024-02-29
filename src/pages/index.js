@@ -54,6 +54,24 @@ const Landing = () => {
       })
 
       const data = await response.json()
+
+      const createFirstTask = {
+        task: "first task",
+        priority: "1",
+        projectId: data['_id'],
+        project: data['project'],
+        status: 'toDo'  // by default any new task will have 'toDo' status
+    }
+
+    // creating the first subtask
+    await fetch(`${URL}/projects/tasks`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(createFirstTask)
+    })
+
       setProjects([...projects, data])
       setNewProjectTitle('')
       setNewProjectStatus('')

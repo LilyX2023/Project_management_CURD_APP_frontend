@@ -6,7 +6,6 @@ import NewTask from "../components/newTask"
 
 function ProjectShow() {
     const [projectTasks, setProjectTasks] = useState(useLoaderData())
-    console.log(projectTasks)
     const params = useParams() // gives {id: '<id>'}
     const [addTasks, setAddTasks] = useState(false)
     const [buttonClicked, setButtonClicked] = useState(false) // for adding new task
@@ -37,11 +36,12 @@ function ProjectShow() {
             priority: formData.get('priority'),
 
             // using the first object since 'projectId' and 'project' field will have same value across all subtasks for a particular project
-            projectId: projectTasks?.[0]['projectId'] || "",
+            projectId: params['id'],
             project: projectTasks?.[0]['project'] || "",
 
             status: 'toDo'  // by default any new task will have 'toDo' status
         }
+
             
         await fetch(`${URL}/projects/tasks`, {
             method: 'post',
