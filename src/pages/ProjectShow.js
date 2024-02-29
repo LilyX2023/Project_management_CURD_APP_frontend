@@ -1,7 +1,8 @@
-import { useLoaderData, Form, useParams } from "react-router-dom"
+import { useLoaderData, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import GroupedTask from "../components/groupedTask"
 import { projectLoader } from "../loaders"
+import NewTask from "../components/newTask"
 
 function ProjectShow() {
     const [projectTasks, setProjectTasks] = useState(useLoaderData())
@@ -52,19 +53,22 @@ function ProjectShow() {
 
 
         // anotther way to get updated list
-        //To get the newly created task along with all fields added at the backend like mongodb _id, here using the response body. The response sent from server after the POST request, includes the status code, headers, and a body. The body of the response contains the newly created resource (in this case, the task), including any additional properties that the backend server has added
+        //To get the newly created task along with all fields added at the backend like mongodb _id, here using the response body. The response sent from server after the POST request, includes the status code, headers, and a body (check backend TaskController.js Post request). The body of the response contains the newly created resource (in this case, the task), including any additional properties that the backend server has added
         // const newTaskWithId = await response.json()
 
         // Update state with the newly created task
         // creating a new array so that memory reference to projectTasks changes and React detects this as a change in state variable
         // setProjectTasks((prevTasks) => [...prevTasks, newTaskWithId])
 
+        // Note: Multiple state variable changes one after other like done below are usually queued and react optmizes re-rendering by looking at all queued staten variables changes
 
         // reset buttonClicked to hide the form after submission
         setButtonClicked(false)
 
         // setting add tasks state to true, so that page is re-rendered with the mongodb _id using useEffect callback
         setAddTasks(true)
+      
+        setProjectTasks(null)  // for smoother rendering so that Virtual DOM now has to compare null to the new rendered component
 
     }
     
@@ -90,23 +94,8 @@ function ProjectShow() {
             </button>
 
            { buttonClicked ? 
-           <Form onSubmit={handleNewTask} className='new-task-form flex'>
-                <div className="task-field flex">
-                    <label> Description</label>
-                    <textarea className="border-corner" name='task' placeholder="Enter task description"/>
-                </div>
-                <div className="task-field flex">
-                    <label>Priority</label>
-                    <select name='priority' className="border-corner">
-                        <option value="1">High</option>
-                        <option value="2">Medium</option>
-                        <option value="3">Low</option>
-                    </select>
-                </div>
-                <div >
-                    <input className="task-field border-corner create-task-button" type='submit' value='Create Task' />
-                </div>
-            </Form>  : null }
+           <NewTask handleNewTask={handleNewTask} />  : null }
+            
             {projectTasks &&
             <div className="project-show-task flex">
                 <GroupedTask tasks={todoTasks} heading={"To do"}/>

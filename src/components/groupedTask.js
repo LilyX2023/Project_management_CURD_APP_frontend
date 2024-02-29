@@ -25,7 +25,6 @@ function GroupedTask({ tasks, heading }) {
 
       {tasks.map(projectTask => {
         const [priorityLabel, priorityColor] = priorityNumberToString(projectTask.priority)
-        const created_on = projectTask.created_on
         const className = `priority ${priorityColor}`
         return (
           <div key={projectTask._id} className="task-card border-corner">
@@ -35,9 +34,6 @@ function GroupedTask({ tasks, heading }) {
               </div>
               <div className="task-right-section">
                 <h2> {projectTask.task} </h2>
-                <div className="due-date">
-                  <b>Due on:</b> {created_on}
-                </div>
               </div>
             </Link>
           </div>
