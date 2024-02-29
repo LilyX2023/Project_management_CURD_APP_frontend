@@ -6,7 +6,7 @@ function NavBar() {
       </div>
       <div className="nav-right">
         <div className="buttons">
-          <a href="/projects">Home</a>
+          <a href="/">Home</a>
           <a href="/user" style={{ display: 'none' }}>
             Login
           </a>

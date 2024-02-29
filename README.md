@@ -22,7 +22,7 @@ The project roadmap is set in stages where we begin as a simple to-do list and g
 | TaskShow | /projects/tasks/:id | GET | Renders a project subtask|
 | TaskEdit | /projects/tasks/:id | PUT | Updates a project subtask|
 | TaskCreate | /projects/tasks/create | POST | Creates a project subtask|
-| TaskDelete | /projects/tasks/delete/:id | DELETE | Deletes a project subtask|
+| TaskDelete | /projects/:projectId/tasks/delete/:taskId | DELETE | Deletes a project subtask|
 
 
 
