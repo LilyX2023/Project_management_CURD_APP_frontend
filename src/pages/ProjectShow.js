@@ -5,7 +5,6 @@ import { projectLoader } from "../loaders"
 
 function ProjectShow() {
     const [projectTasks, setProjectTasks] = useState(useLoaderData())
-    console.log(projectTasks)
     const params = useParams() // gives {id: '<id>'}
     const [addTasks, setAddTasks] = useState(false)
     const [buttonClicked, setButtonClicked] = useState(false) // for adding new task
@@ -30,17 +29,21 @@ function ProjectShow() {
     async function handleNewTask(event) {
         event.preventDefault()
 
+        console.log(params, 'oparams')
+
         const formData = new FormData(event.target)
         const createdTask = {
             task: formData.get('task'),
             priority: formData.get('priority'),
 
             // using the first object since 'projectId' and 'project' field will have same value across all subtasks for a particular project
-            projectId: projectTasks?.[0]['projectId'] || "",
+            projectId: params['id'],
             project: projectTasks?.[0]['project'] || "",
 
             status: 'toDo'  // by default any new task will have 'toDo' status
         }
+
+        console.log('createdTask', createdTask)
             
         await fetch(`${URL}/projects/tasks`, {
             method: 'post',
