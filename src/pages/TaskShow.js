@@ -61,7 +61,7 @@ function TaskShow() {
                         </div>
                         <div className='task-priority task-flex'>
                             <h2>Priority:</h2>
-                            <p className='task-priority'>{priorityLabel}</p>
+                            <p className='task-priority'>{editedTaskData["priorityLabel"]}</p>
                         </div>
                     </>
                 ) : (
@@ -76,11 +76,21 @@ function TaskShow() {
                         </div>
                         <div className='task-status task-flex'>
                             <h2>Status:</h2>
-                            <input type="text" name="status" value={editedTaskData.status} onChange={handleChange} />
+                            <select name="status" id="status-select" value={editedTaskData.status} onChange={handleChange}>
+                            <option value="">--Please choose a status--</option>
+                            <option value="toDo">To do</option>
+                            <option value="inProgress">In progress</option>
+                            <option value="completed">Completed</option>
+                            </select>
                         </div>
                         <div className='task-priority task-flex'>
                             <h2>Priority:</h2>
-                            <input type="text" name="priorityLabel" value={editedTaskData.priorityLabel} onChange={handleChange} />
+                            <select name="priorityLabel" id="priorityLabel-select" value={editedTaskData.priorityLabel} onChange={handleChange}>
+                            <option value="">--Please choose a priority--</option>
+                            <option value="1">High</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Low</option>
+                            </select>
                         </div>
                         <button type="submit">Save</button>
                     </form>
