@@ -98,13 +98,14 @@ function TaskShow() {
           </div>
           <div className="task-show-buttons-container">
             <div className="update-button-container">
+              {/* the update button doesn't work yet because it needs an update function in actions.js */}
               <input className="update-button" type="submit" value="Update" />
             </div>
-            <Form action={`/projects/${taskData.projectId}/tasks/delete/${taskData._id}`} method="post">
-              <input className="delete-button" type="submit" value="Delete" />
-            </Form>
           </div>
         </div>
+      </Form>
+      <Form action={`/projects/${taskData.projectId}/tasks/delete/${taskData._id}`} method="post">
+        <button className="delete-button">Delete</button>
       </Form>
     </div>
   )
