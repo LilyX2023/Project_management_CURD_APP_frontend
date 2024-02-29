@@ -29,8 +29,6 @@ function ProjectShow() {
     async function handleNewTask(event) {
         event.preventDefault()
 
-        console.log(params, 'oparams')
-
         const formData = new FormData(event.target)
         const createdTask = {
             task: formData.get('task'),
@@ -43,7 +41,6 @@ function ProjectShow() {
             status: 'toDo'  // by default any new task will have 'toDo' status
         }
 
-        console.log('createdTask', createdTask)
             
         await fetch(`${URL}/projects/tasks`, {
             method: 'post',
