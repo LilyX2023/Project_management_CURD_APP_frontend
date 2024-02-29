@@ -51,7 +51,7 @@ code {
 .App,
 body {
   max-width: 100svw;
-  background-color: var(--pri-white);
+  /* background-color: var(--pri-white); */
 }
 
 .flex {
@@ -313,4 +313,54 @@ nav {
   margin-bottom: 20px;
   border: none;
   font-size: 0.9em;
+}
+
+.task-show-container {
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #fff;
+  border: 10px solid rgb(159, 155, 155);
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 60px;
+  width: 70%;
+}
+
+.task-flex h2 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.task-flex p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.task-priority {
+  font-weight: bold;
+}
+
+.update-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-button, .delete-button {
+  background-color: #e3e0e0;
+}
+
+.update-button:hover, .delete-button:hover {
+  background-color: #aba9a9;
 }
