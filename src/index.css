@@ -51,7 +51,7 @@ code {
 .App,
 body {
   max-width: 100svw;
-  /* background-color: var(--pri-white); */
+  background-color: var(--pri-white);
 }
 
 .flex {
