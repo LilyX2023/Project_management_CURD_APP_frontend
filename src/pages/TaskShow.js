@@ -8,7 +8,9 @@ function TaskShow() {
     const [editing, setEditing] = useState(false);
     const [editedTaskData, setEditedTaskData] = useState({ ...useLoaderData() });
     const [priorityLabel, priorityColor] = priorityNumberToString(editedTaskData['priority']);
+    const className = `priority ${priorityColor}`
     const status = prettifyStatus(editedTaskData['status']);
+
 
     const handleEdit = () => {
         setEditing(true);
@@ -61,7 +63,8 @@ function TaskShow() {
                         </div>
                         <div className='task-priority task-flex'>
                             <h2>Priority:</h2>
-                            <p className='task-priority'>{editedTaskData["priorityLabel"]}</p>
+                            <p className={className}>{priorityLabel}</p>
+                            {console.log(priorityLabel)}
                         </div>
                     </>
                 ) : (
