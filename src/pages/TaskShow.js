@@ -29,7 +29,7 @@ function TaskShow() {
                     project: editedTaskData.project,
                     task: editedTaskData.task,
                     status: editedTaskData.status,
-                    priorityLabel: editedTaskData.priorityLabel
+                    priority: editedTaskData.priority
                 })
             });
             // After successful update, reset the editing state
@@ -88,7 +88,7 @@ function TaskShow() {
                         </div>
                         <div className='task-priority task-flex'>
                             <h2>Priority:</h2>
-                            <select name="priorityLabel" id="priorityLabel-select" value={editedTaskData.priorityLabel} onChange={handleChange}>
+                            <select name="priority" id="priorityLabel-select" value={editedTaskData.priority} onChange={handleChange}>
                             <option value="">--Please choose a priority--</option>
                             <option value="1">High</option>
                             <option value="2">Medium</option>
