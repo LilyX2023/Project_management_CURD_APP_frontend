@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate } from 'react-router-dom'
 import { Form } from 'react-router-dom'
-import { priorityNumberToString, databaseStatus } from '../utils/utilFunctions'
+import { priorityNumberToString, databaseStatus, databasePriority } from '../utils/utilFunctions'
 
 const URL = process.env.REACT_APP_URL
 
@@ -49,7 +49,7 @@ const handleSubmit = async (event) => {
     const formData = new FormData(event.target)
     const updatedTask = {
         task: formData.get('task'),
-        priority: formData.get('priority'),
+        priority: databasePriority(formData.get('priority')),
         projectId: taskData['projectId'],
         project: taskData['project'],
         status: databaseStatus(formData.get('status'))
@@ -67,6 +67,7 @@ const handleSubmit = async (event) => {
 
     navigate(`/projects/${taskData['projectId']}`)
 }
+
 
 
   return (
