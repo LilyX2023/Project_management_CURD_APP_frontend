@@ -19,3 +19,13 @@ export const databaseStatus = (status) => {
         return 'completed'
     } 
 }
+
+export const databasePriority = (priority) => {
+  if (priority === 'High') {
+    return '1'
+} else if (priority === 'Medium') {
+    return '2'
+}  else if (priority === 'Low') {
+    return '3'
+} 
+}
