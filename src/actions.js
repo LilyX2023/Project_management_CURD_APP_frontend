@@ -1,6 +1,5 @@
 import { redirect } from "react-router-dom";
 
-
 const URL = process.env.REACT_APP_URL;
 
 export const updateAction = async ({ request, params }) => {
@@ -55,4 +54,16 @@ export const deleteAction = async ({params}) => {
 
     return redirect('/')
 
+}
+
+//delete a task of a project
+export const deleteTaskAction = async ({params}) => {
+    // Extracting projectId and taskId from the request parameters
+    const { projectId, taskId } = params
+
+    await fetch(`${URL}/projects/tasks/${taskId}`, {
+        method: 'delete'
+    });
+
+    return redirect(`/projects/${projectId}`)
 }

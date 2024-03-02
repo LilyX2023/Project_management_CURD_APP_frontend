@@ -11,3 +11,9 @@ export const projectLoader = async ({params}) => {
     const data = await response.json()
     return data
 }
+
+export const taskLoader = async ({params}) => {
+    const response = await fetch(`${URL}/projects/tasks/${params.id}`)
+    const data = await response.json()
+    return data[0]
+}
