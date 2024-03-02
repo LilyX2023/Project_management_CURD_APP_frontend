@@ -1,4 +1,4 @@
-import { useLoaderData, redirect } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import { Form } from 'react-router-dom'
 import { priorityNumberToString, databaseStatus } from '../utils/utilFunctions'
 
@@ -6,6 +6,8 @@ const URL = process.env.REACT_APP_URL
 
 function TaskShow() {
   const taskData = useLoaderData()
+
+  const navigate = useNavigate()
 
   const [priorityLabel, priorityColor] = priorityNumberToString(taskData['priority'])
 
@@ -63,7 +65,7 @@ const handleSubmit = async (event) => {
         body: JSON.stringify(updatedTask)
     });
 
-    return redirect(`/projects/${taskData['projectId']}`)
+    navigate(`/projects/${taskData['projectId']}`)
 }
 
 
