@@ -10,12 +10,12 @@ export const priorityNumberToString = (priority) => {
     }
 }
 
-export const prettifyStatus = (status) => {
-    if (status === 'toDo') {
-        return 'To Do'
-    } else if (status === 'inProgress') {
-        return 'In Progress'
-    }  else if (status === 'completed') {
-        return 'Completed'
+export const databaseStatus = (status) => {
+    if (status === 'To Do') {
+        return 'toDo'
+    } else if (status === 'In Progress') {
+        return 'inProgress'
+    }  else if (status === 'Completed') {
+        return 'completed'
     } 
 }

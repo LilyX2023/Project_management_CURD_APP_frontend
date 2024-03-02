@@ -1,6 +1,5 @@
 import { redirect } from "react-router-dom";
 
-
 const URL = process.env.REACT_APP_URL;
 
 export const updateAction = async ({ request, params }) => {
