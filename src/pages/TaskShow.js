@@ -1,13 +1,13 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, redirect } from 'react-router-dom'
 import { Form } from 'react-router-dom'
-import { priorityNumberToString, prettifyStatus } from '../utils/utilFunctions'
+import { priorityNumberToString, databaseStatus } from '../utils/utilFunctions'
+
+const URL = process.env.REACT_APP_URL
 
 function TaskShow() {
   const taskData = useLoaderData()
 
   const [priorityLabel, priorityColor] = priorityNumberToString(taskData['priority'])
-
-  const status = prettifyStatus(taskData['status'])
 
   let statusSelection = {
     toDo: false,
@@ -21,14 +21,14 @@ function TaskShow() {
     low: false
   }
 
-  console.log(taskData)
+  console.log('taskData', taskData)
 
   if (taskData.status === 'toDo') {
     statusSelection.toDo = true
   } else if (taskData.status === 'inProgress') {
     statusSelection.inProgress = true
-  } else if (taskData.status === 'inProgress') {
-    statusSelection.inProgress = true
+  } else if (taskData.status === 'completed') {
+    statusSelection.completed = true
   }
 
   if (taskData.priority === '1') {
@@ -38,6 +38,34 @@ function TaskShow() {
   } else if (taskData.priority === '3') {
     prioritySelection.low = true
   }
+
+//  update a task of a project
+const handleSubmit = async (event) => {
+
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+    const updatedTask = {
+        task: formData.get('task'),
+        priority: formData.get('priority'),
+        projectId: taskData['projectId'],
+        project: taskData['project'],
+        status: databaseStatus(formData.get('status'))
+    }
+
+    console.log('updatedtask', updatedTask)
+
+    await fetch(`${URL}/projects/tasks/${taskData['_id']}`, {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedTask)
+    });
+
+    return redirect(`/projects/${taskData['projectId']}`)
+}
+
 
   return (
     <div className="task-show-container flex">
@@ -59,38 +87,40 @@ function TaskShow() {
           <p className="task-priority">{priorityLabel}</p>
         </div>
       </div> */}
-      <Form action={`/projects/${taskData.projectId}/tasks/${taskData._id}`} method="post">
+
+
+      <Form onSubmit={handleSubmit}>
         <div className="task-show-name-container">
           <div className="task-show-name-label"> Task: </div>
-          <input className="task-show-name" type="text" value={taskData.task} />
+          <input className="task-show-name" type="text" name="task" defaultValue={taskData.task} />
         </div>
 
         <div className="task-show-bottom-row-container">
           <div className="task-show-dropdowns-container">
             <div className="task-show-status-container">
               <div className="task-show-status-label"> Status: </div>
-              <select className="task-show-status">
-                <option value="toDo" selected={statusSelection.toDo}>
+              <select name="status" className="task-show-status">
+                <option defaultValue="toDo" selected={statusSelection.toDo}>
                   To Do
                 </option>
-                <option value="inProgress" selected={statusSelection.inProgress}>
+                <option defaultValue="inProgress" selected={statusSelection.inProgress}>
                   In Progress
                 </option>
-                <option value="completed" selected={statusSelection.completed}>
+                <option defaultValue="completed" selected={statusSelection.completed}>
                   Completed
                 </option>
               </select>
             </div>
             <div className="task-show-priority-container">
               <div className="task-show-priority-label"> Priority: </div>
-              <select className="task-show-priority">
-                <option value="1" selected={prioritySelection.high}>
+              <select name="priority" className="task-show-priority">
+                <option defaultValue="1" selected={prioritySelection.high}>
                   High
                 </option>
-                <option value="2" selected={prioritySelection.medium}>
+                <option defaultValue="2" selected={prioritySelection.medium}>
                   Medium
                 </option>
-                <option value="3" selected={prioritySelection.low}>
+                <option defaultValue="3" selected={prioritySelection.low}>
                   Low
                 </option>
               </select>
